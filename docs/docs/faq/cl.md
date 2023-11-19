@@ -1,58 +1,5 @@
-<!-- omit in toc -->
-# Core Lightning on the RaspiBlitz FAQ
 
-<!-- omit in toc -->
-## Table of Contents
-- [Common questions about the different Lightning Network implementations](#common-questions-about-the-different-lightning-network-implementations)
-  - [Can LND and CLN nodes open channels to each other and route payments?](#can-lnd-and-cln-nodes-open-channels-to-each-other-and-route-payments)
-  - [Can I run LND and CLN connected to the same node?](#can-i-run-lnd-and-cln-connected-to-the-same-node)
-  - [Can I convert an LND node to CLN (or the opposite)?](#can-i-convert-an-lnd-node-to-cln-or-the-opposite)
-  - [Is there a table to quickly compare LND and CLN?](#is-there-a-table-to-quickly-compare-lnd-and-cln)
-- [CLN official documentation and support channels](#cln-official-documentation-and-support-channels)
-- [Commands and aliases](#commands-and-aliases)
-- [Directories](#directories)
-- [Config file](#config-file)
-  - [Default values](#default-values)
-- [CLN cheatsheet](#cln-cheatsheet)
-- [Plug-ins](#plug-ins)
-  - [General info](#general-info)
-  - [Directories](#directories-1)
-  - [Implemented plugins](#implemented-plugins)
-  - [Add a custom plugin](#add-a-custom-plugin)
-  - [CLBOSS](#clboss)
-  - [Feeadjuster](#feeadjuster)
-  - [Dual funded channels](#dual-funded-channels)
-    - [Reading](#reading)
-    - [Setting up](#setting-up)
-    - [Open a dual funded channel](#open-a-dual-funded-channel)
-    - [Fundchannel syntax](#fundchannel-syntax)
-    - [Multifundchannel syntax](#multifundchannel-syntax)
-  - [Offers](#offers)
-  - [Poncho - hosted channels](#poncho---hosted-channels)
-- [Feature bits](#feature-bits)
-- [Testnets](#testnets)
-- [Backups](#backups)
-  - [Backup strategy](#backup-strategy)
-  - [Seed](#seed)
-  - [How to display the hsm\_secret in a human-readable format?](#how-to-display-the-hsm_secret-in-a-human-readable-format)
-  - [How to test the seedwords?](#how-to-test-the-seedwords)
-  - [How to restore the hsm\_secret from text?](#how-to-restore-the-hsm_secret-from-text)
-  - [Channel database](#channel-database)
-- [Recovery](#recovery)
-  - [Recover from a cl-rescue file](#recover-from-a-cl-rescue-file)
-  - [Recover from a seed](#recover-from-a-seed)
-  - [Emergency recovery in case of lost channel states](#emergency-recovery-in-case-of-lost-channel-states)
-  - [Restore a CLN node from the database backup on the SDcard](#restore-a-cln-node-from-the-database-backup-on-the-sdcard)
-  - [Rescan the chain after restoring a used CLN wallet](#rescan-the-chain-after-restoring-a-used-cln-wallet)
-  - [Guesstoremote to recover funds from force-closed channels](#guesstoremote-to-recover-funds-from-force-closed-channels)
-- [sqlite3 queries](#sqlite3-queries)
-- [Extract the private and public key from the hsm\_secret file](#extract-the-private-and-public-key-from-the-hsm_secret-file)
-- [Update](#update)
-  - [Update to a new CLN release](#update-to-a-new-cln-release)
-  - [Experimental update to the latest master](#experimental-update-to-the-latest-master)
-- [sqlite3 queries](#sqlite3-queries-1)
-- [Script file help list](#script-file-help-list)
-- [All possible config options](#all-possible-config-options)
+# Core Lightning
 
 ## Common questions about the different Lightning Network implementations
 
@@ -119,7 +66,7 @@ or with the alias: `cllog`
 * find [all the possible config options](#all-possible-config-options) below.
 
 ## CLN cheatsheet
-<https://github.com/grubles/cln-cheatsheet>
+[cheat sheet](https://github.com/grubles/cln-cheatsheet)
 
 ## Plug-ins
 
@@ -419,12 +366,12 @@ Will need to pay through a peer which supports the onion messages which means yo
     The `pay_index` will increase as the offer gets reused.
 
 ### Poncho - hosted channels
-* <https://github.com/fiatjaf/poncho/>
-* <https://github.com/rootzoll/raspiblitz/issues/3269>
+* hosted channels: [https://github.com/fiatjaf/poncho/](https://github.com/fiatjaf/poncho/)
+* [https://github.com/rootzoll/raspiblitz/issues/3269](https://github.com/rootzoll/raspiblitz/issues/3269)
 
 ## Feature bits
-* <https://bitcoin.stackexchange.com/questions/107484/how-can-i-decode-the-feature-string-of-a-lightning-node-with-bolt-9>
-* Convert the hex number from `lightning-cli listpeers` to binary: <https://www.binaryhexconverter.com/hex-to-binary-converter> and count the position of the bits from the right.
+* [https://bitcoin.stackexchange.com/questions/107484/how-can-i-decode-the-feature-string-of-a-lightning-node-with-bolt-9](https://bitcoin.stackexchange.com/questions/107484/how-can-i-decode-the-feature-string-of-a-lightning-node-with-bolt-9)
+* Convert the hex number from `lightning-cli listpeers` to binary: [https://www.binaryhexconverter.com/hex-to-binary-converter](https://www.binaryhexconverter.com/hex-to-binary-converter) and count the position of the bits from the right.
 
 ## Testnets
 * for testnet and signet there are prefixes `t` and `s` used for the aliases, daemons and their own plugin directory names.
@@ -458,11 +405,11 @@ Will need to pay through a peer which supports the onion messages which means yo
     ```
 
 ## Backups
-* <https://lightning.readthedocs.io/FAQ.html#how-to-backup-my-wallet>>
-* General details: <https://lightning.readthedocs.io/BACKUP.html>
+* [https://lightning.readthedocs.io/FAQ.html#how-to-backup-my-wallet](https://lightning.readthedocs.io/FAQ.html#how-to-backup-my-wallet)
+* General details: [https://lightning.readthedocs.io/BACKUP.html](https://lightning.readthedocs.io/BACKUP.html)
 
 ### Backup strategy
-* discussed in <https://github.com/rootzoll/raspiblitz/issues/2983>
+* discussed in [https://github.com/rootzoll/raspiblitz/issues/2983](https://github.com/rootzoll/raspiblitz/issues/2983)
 
 * store your seed (or the `hsm_secret` HEX) as text.
 * the channel database (`lightningd.sqlite3`) is replicated to the SDcard real-time.
@@ -558,9 +505,9 @@ Will need to pay through a peer which supports the onion messages which means yo
 
 ### Emergency recovery in case of lost channel states
 
-* blogpost: <https://blog.blockstream.com/core-lightning-v0-12-0/>
+* blogpost: [https://blog.blockstream.com/core-lightning-v0-12-0/](https://blog.blockstream.com/core-lightning-v0-12-0/)
 * demo video: https://youtu.be/zBmEieZuS8Q
-* manpage: <https://lightning.readthedocs.io/lightning-emergencyrecover.7.html>
+* manpage: [https://lightning.readthedocs.io/lightning-emergencyrecover.7.html](https://lightning.readthedocs.io/lightning-emergencyrecover.7.html)
    ```
    lightning-cli help emergencyrecover
    ```
@@ -614,7 +561,7 @@ Will need to pay through a peer which supports the onion messages which means yo
 * controlled by the entry in the cln config file
 * can use the `menu` -> `REPAIR` -> `REPAIR-CL` -> `RESCAN` option
 * or follow the manual process:
-  <https://lightning.readthedocs.io/FAQ.html#rescanning-the-block-chain-for-lost-utxos>
+ [https://lightning.readthedocs.io/FAQ.html#rescanning-the-block-chain-for-lost-utxos](https://lightning.readthedocs.io/FAQ.html#rescanning-the-block-chain-for-lost-utxos)
     ```
     # stop `lightningd`:
     sudo systemctl stop lightningd
@@ -634,7 +581,7 @@ Will need to pay through a peer which supports the onion messages which means yo
     ```
 
 ### Guesstoremote to recover funds from force-closed channels
-* <https://lightning.readthedocs.io/lightning-hsmtool.8.html>
+* [https://lightning.readthedocs.io/lightning-hsmtool.8.html](https://lightning.readthedocs.io/lightning-hsmtool.8.html)
     ```
     $ man lightning-hsmtool
     guesstoremote  p2wpkh node_id max_channel_dbid hsm_secret [password]
@@ -682,7 +629,7 @@ Will need to pay through a peer which supports the onion messages which means yo
     KwFvTne98E1t3mTNAr8pKx67eUzFJWdSNPqPSfxMEtrueW7PcQzL
     ```
 * To import to the Electrum Wallet use the `p2wpkh:` prefix:
-  <https://bitcoinelectrum.com/importing-your-private-keys-into-electrum/>
+ [https://bitcoinelectrum.com/importing-your-private-keys-into-electrum/](https://bitcoinelectrum.com/importing-your-private-keys-into-electrum/)
   ```
   p2wpkh:KxacygL6usxP8T9cFSM2SRW5QsEg66bUQUEn997UWwCZANEe7NLT
   ```
@@ -698,7 +645,7 @@ Will need to pay through a peer which supports the onion messages which means yo
     ```
 
 ## Extract the private and public key from the hsm_secret file
-<https://gist.github.com/openoms/0844cf2db807b85fbcffacf1a3fb53bd#file-readme-md>
+[https://gist.github.com/openoms/0844cf2db807b85fbcffacf1a3fb53bd#file-readme-md](https://gist.github.com/openoms/0844cf2db807b85fbcffacf1a3fb53bd#file-readme-md)
 
 ## Update
 ### Update to a new CLN release

@@ -1,10 +1,10 @@
-## FAQ Development
+# Development
 
 ### What is the process of creating a new SD card image release?
 
 Checklist before making a SD card image release:
 
-* "Versioning" number is upfates in your RaspiBlitz Source Code (_version.info)
+* "Versioning" number is updates in your RaspiBlitz Source Code (_version.info)
 * Latest code is merged in release branch
 
 Creating the base minimal sd card:
@@ -12,7 +12,7 @@ Creating the base minimal sd card:
 * Start [`Ubuntu LIVE`](http://releases.ubuntu.com/18.04.3/ubuntu-18.04.3-desktop-amd64.iso) from USB stick
 * Under Settings: best to set correct keyboard language & power settings to prevent monitor turn off
 * Connect to a secure WiFi (hardware switch on) or LAN
-* Download the latest RaspiOS-64bit (zip/xz & sig file) namend in the [build_sdcard.sh](./build_sdcard.sh) and note the SHA256 checksum
+* Download the latest RaspiOS-64bit (zip/xz & sig file) named in the [build_sdcard.sh](https://github.com/fusion44/raspiblitz/blob/95c495ea0195765d3391eb9603e6cdeb24075c2c/build_sdcard.sh) and note the SHA256 checksum
 * From the browser `Show All Downloads` and from the context menu select `Open Containing Folder`
 * On that file manager open context (right click) on the white-space and select `Open in Terminal`
 * Compare the checksum with the one you just made note of, using `shasum -a 256 *.zip`
@@ -133,13 +133,13 @@ The RaspiBlitz is your computer to experiment with. Feel free to add your own sc
 
 ### Can I run RaspiBlitz on other computers than RaspberryPi?
 
-There is an experimental section in this GitHub that tries to build for other SingleBoardComputers. Feel free to try it out and share your experience: [alternative.platforms/README.md](alternative.platforms/README.md)
+There is an experimental section in this GitHub that tries to build for other SingleBoardComputers. Feel free to try it out and share your experience: `TODO: alternative.platforms/README.md alternative.platforms/README.md`
 
 ### How can I build an SD card from another branch?
 
 There might be new, but not released features in development that are not yet in the default version branch - but you want to try them out.
 
-To build a SD card image from another branch than master, you follow the [Build the SD Card Image](README.md#build-the-sd-card-image) from the README, but execute the build script from the other branch and add the name of that branch as a parameter to the build script.
+To build a SD card image from another branch than master, you follow the `TODO: Build the SD Card Image  README.md#build-the-sd-card-image ` from the README, but execute the build script from the other branch and add the name of that branch as a parameter to the build script.
 
 For example if you want to make a build from the 'dev' branch you execute the following command:
 
@@ -153,7 +153,7 @@ If you fork the RaspiBlitz repo (much welcome) and you want to run that code on 
 
 * The quick way: For small changes in a single script, go to `/home/admin` on your running RaspiBlitz, delete the old git with `sudo rm -r raspiblitz` then replace it with your code `git clone [YOURREPO]` and `patch`
 
-* The long way: If you like to install/remove/change services and system configurations you need to build a SD card from your own code. Prepare like in [Build the SD Card Image](README.md#build-the-sd-card-image) from the README but in the end run the command:
+* The long way: If you like to install/remove/change services and system configurations you need to build a SD card from your own code. Prepare like in `TODO: Build the SD Card Image README.md#build-the-sd-card-image ` from the README but in the end run the command:
 
 `wget --no-cache https://raw.githubusercontent.com/[GITHUB-USERNAME]/raspiblitz/[BRANCH]/build_sdcard.sh && sudo bash build_sdcard.sh -b [BRANCH]`
 

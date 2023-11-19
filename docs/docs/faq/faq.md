@@ -1,81 +1,6 @@
-<!-- omit in toc -->
-# FAQ - Frequently Asked Questions
 
----
-Table of Contents
----
-- [Table of Contents](#table-of-contents)
-- [Upgrade](#upgrade)
-  - [How to verify the SD card image after download?](#how-to-verify-the-sd-card-image-after-download)
-  - [What changed on every upgrade?](#what-changed-on-every-upgrade)
-  - [How do I upgrade my RaspiBlitz?](#how-do-i-upgrade-my-raspiblitz)
-  - [Why do I need to re-burn my SD card for an update?](#why-do-i-need-to-re-burn-my-sd-card-for-an-update)
-  - [How can I update LND or bitcoind even before the next RaspiBlitz update?](#how-can-i-update-lnd-or-bitcoind-even-before-the-next-raspiblitz-update)
-- [SSH](#ssh)
-  - [What to do when on SSH I see "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!"](#what-to-do-when-on-ssh-i-see-warning-remote-host-identification-has-changed)
-  - [How do I unplug/shutdown safely without SSH](#how-do-i-unplugshutdown-safely-without-ssh)
-  - [I cannot connect via SSH to my RaspiBlitz. What do I do?](#i-cannot-connect-via-ssh-to-my-raspiblitz-what-do-i-do)
-  - [How to SSH over Tor?](#how-to-ssh-over-tor)
-  - [How to setup port-forwarding with a SSH tunnel?](#how-to-setup-port-forwarding-with-a-ssh-tunnel)
-  - [How do I setup just a port-forwarding user on my public server?](#how-do-i-setup-just-a-port-forwarding-user-on-my-public-server)
-  - [How to reset the ssh config and keys?](#how-to-reset-the-ssh-config-and-keys)
-- [Display](#display)
-  - [Can I flip the screen?](#can-i-flip-the-screen)
-  - [How to fix my upside down LCD after update?](#how-to-fix-my-upside-down-lcd-after-update)
-  - [Can I run the RaspiBlitz without a display/LCD?](#can-i-run-the-raspiblitz-without-a-displaylcd)
-  - [How do I find the IP address when running without a display?](#how-do-i-find-the-ip-address-when-running-without-a-display)
-- [Debug](#debug)
-  - [I have the full blockchain on another storage. How do I copy it to the RaspiBlitz?](#i-have-the-full-blockchain-on-another-storage-how-do-i-copy-it-to-the-raspiblitz)
-  - [How do I generate a Debug Report?](#how-do-i-generate-a-debug-report)
-  - [Why is my "final sync" taking so long?](#why-is-my-final-sync-taking-so-long)
-  - [How do I backup my Lightning Node?](#how-do-i-backup-my-lightning-node)
-    - [1) Securing your On-Chain- and Channel-Funds during Operation](#1-securing-your-on-chain--and-channel-funds-during-operation)
-    - [2) Making a complete LND data backup](#2-making-a-complete-lnd-data-backup)
-  - [How can I recover my coins from a failing RaspiBlitz?](#how-can-i-recover-my-coins-from-a-failing-raspiblitz)
-    - [1) Recover LND data](#1-recover-lnd-data)
-    - [2) Recover from Wallet Seed](#2-recover-from-wallet-seed)
-  - [How do I move funds \& channels from RaspiBlitz to LND Lightning Desktop App?](#how-do-i-move-funds--channels-from-raspiblitz-to-lnd-lightning-desktop-app)
-  - [How do I change the Name/Alias of my lightning node](#how-do-i-change-the-namealias-of-my-lightning-node)
-  - [How do I change the public port LND/Lightning node is running on?](#how-do-i-change-the-public-port-lndlightning-node-is-running-on)
-  - [How do I solve a "signature mismatch after caveat verification" error?](#how-do-i-solve-a-signature-mismatch-after-caveat-verification-error)
-  - [Why is my node not routing?](#why-is-my-node-not-routing)
-  - [When using Auto-Unlock, how much security do I lose?](#when-using-auto-unlock-how-much-security-do-i-lose)
-  - [I connected my HDD but it still says 'Connect HDD' on the display?](#i-connected-my-hdd-but-it-still-says-connect-hdd-on-the-display)
-  - [How do I shrink the QR code for connecting my Shango/Zap/Zeus mobile phone?](#how-do-i-shrink-the-qr-code-for-connecting-my-shangozapzeus-mobile-phone)
-  - [Why is my bitcoin IP on the display red?](#why-is-my-bitcoin-ip-on-the-display-red)
-  - [Why is my node address on the display red?](#why-is-my-node-address-on-the-display-red)
-  - [Why is my node address on the display yellow (not green)?](#why-is-my-node-address-on-the-display-yellow-not-green)
-  - [How can I set a fixed IP?](#how-can-i-set-a-fixed-ip)
-  - [How do I fix a displayed Error in my Config?](#how-do-i-fix-a-displayed-error-in-my-config)
-  - [Can I run the RaspiBlitz as Backend for BTCPayServer?](#can-i-run-the-raspiblitz-as-backend-for-btcpayserver)
-  - [I don't have a LAN port on my Laptop - how do I connect to my RaspiBlitz?](#i-dont-have-a-lan-port-on-my-laptop---how-do-i-connect-to-my-raspiblitz)
-  - [Is it possible to connect the Blitz over Wifi instead of using a LAN cable?](#is-it-possible-to-connect-the-blitz-over-wifi-instead-of-using-a-lan-cable)
-  - [Can I directly connect the RaspiBlitz to my laptop?](#can-i-directly-connect-the-raspiblitz-to-my-laptop)
-  - [How to attach the RaspberryPi to the HDD?](#how-to-attach-the-raspberrypi-to-the-hdd)
-  - [What other case options do I have?](#what-other-case-options-do-i-have)
-  - [Are those "Under-Voltage detected" warnings a problem?](#are-those-under-voltage-detected-warnings-a-problem)
-  - [How do I return to the menu after exiting to the command line](#how-do-i-return-to-the-menu-after-exiting-to-the-command-line)
-  - [How do I setup fresh/clean/reset and without going into recovery mode?](#how-do-i-setup-freshcleanreset-and-without-going-into-recovery-mode)
-  - [My blockchain data is corrupted - what can I do?](#my-blockchain-data-is-corrupted---what-can-i-do)
-  - [I have two RaspiBlitz in my network - can they both be public?](#i-have-two-raspiblitz-in-my-network---can-they-both-be-public)
-  - [How can I enforce UASP mode for my SSD controller?](#how-can-i-enforce-uasp-mode-for-my-ssd-controller)
-  - [I am facing maintenance/emergency mode on boot. How do I fix it?](#i-am-facing-maintenanceemergency-mode-on-boot-how-do-i-fix-it)
-- [Extras](#extras)
-  - [How do I connect a UPS to the RaspiBlitz?](#how-do-i-connect-a-ups-to-the-raspiblitz)
-  - [Can I run my RaspiBlitz on Solar Energy?](#can-i-run-my-raspiblitz-on-solar-energy)
-  - [How to use the Let's Encrypt client](#how-to-use-the-lets-encrypt-client)
-    - [Let's Encrypt - HTTP-01](#lets-encrypt---http-01)
-    - [Let's Encrypt - DNS-01](#lets-encrypt---dns-01)
-    - [Let's Encrypt - eMail Address](#lets-encrypt---email-address)
-    - [Let's Encrypt - Installation details](#lets-encrypt---installation-details)
-  - [What is this mnemonic seed word list?](#what-is-this-mnemonic-seed-word-list)
-  - [How do I set up VNC?](#how-do-i-set-up-vnc)
-  - [Why use BTRFS on RaspiBlitz?](#why-use-btrfs-on-raspiblitz)
-    - [Storing your important Data in RAID1 with a USB Thumb Drive](#storing-your-important-data-in-raid1-with-a-usb-thumb-drive)
-    - [Snapshotting the Blockchain](#snapshotting-the-blockchain)
-    - [How do I use BTRFS on RaspiBlitz?](#how-do-i-use-btrfs-on-raspiblitz)
-    - [How to recover a BTRFS partition?](#how-to-recover-a-btrfs-partition)
----
+
+# FAQ
 
 ## Upgrade
 
@@ -113,7 +38,8 @@ As a result you should see a "good signature" message with a main fingerprint th
 
 ### What changed on every upgrade?
 
-See the [CHANGES.md](CHANGES.md) file for details.
+
+See the [CHANGES.md](https://github.com/fusion44/raspiblitz/blob/95c495ea0195765d3391eb9603e6cdeb24075c2c/CHANGES.md) file for details.
 
 ### How do I upgrade my RaspiBlitz?
 
@@ -343,7 +269,7 @@ Once you finished all the transfers, the Raspiblitz will make a quick-check on t
 
 ### Bitcoind tells me to reindex - how can I do this?
 
- To find/access information fast in large data sets like the Bitcoin blockchain indexes are needed. Those indexes can get corrupted on your HDD/SSD and to repair them they need to be rebuild - re-indexed. Bitcoind has two different options to do this - a fast way called "reindex-chainstate" (which just rebuilds the UTXO set from the blocks as you have them) and the slow but complete way called just "reindex" that would even recheck all your block data - see for details here: https://bitcoin.stackexchange.com/questions/60709/when-should-i-use-reindex-chainstate-and-when-reindex 
+ To find/access information fast in large data sets like the Bitcoin blockchain indexes are needed. Those indexes can get corrupted on your HDD/SSD and to repair them they need to be rebuilt - re-indexed. Bitcoind has two different options to do this - a fast way called "reindex-chainstate" (which just rebuilds the UTXO set from the blocks as you have them) and the slow but complete way called just "reindex" that would even recheck all your block data - see for details here: https://bitcoin.stackexchange.com/questions/60709/when-should-i-use-reindex-chainstate-and-when-reindex 
  
  So if you read in your debug logs of bitcoind that you should "reindex" you can try first just to do a fast "reindex-chainstate" and if that didnt worked a slow and full "reindex".
 
@@ -405,7 +331,7 @@ Remember those 24 words you were writing down during the setup? That's your "cip
 
 With the word seed you can recover the on-chain funds that LND was managing for you - but it does not contain all the details about the channels you have open - it's mostly the key to your funding wallet. If you were able to close all channels or never opened any, then you should be safe: The best results to recover on-chain funds from wallet seeds have been reported from people installing the Lightning Labs App on laptop and then using the wallet seed (and same wallet passwords): https://github.com/lightninglabs/lightning-app/releases. Other people were successful in this process using the Zap Desktop wallet (OSX, Win, Linux): https://zap.jackmallers.com/download
 
-If you had open channels it would be best to check if you have also the `channel.backup` file (Static-Channel-Backup feature) that is available since LND 0.6 (RaspiBlitz v1.2) and use it in the process below ... for more details on the `channel.backup` file see [README.md on backups](README.md#backup-for-on-chain---channel-funds).
+If you had open channels it would be best to check if you have also the `channel.backup` file (Static-Channel-Backup feature) that is available since LND 0.6 (RaspiBlitz v1.2) and use it in the process below ... for more details on the `channel.backup` file see `TODO: fixme README.md on backups README.md#backup-for-on-chain---channel-funds .`
 
 - SetUp a fresh RaspiBlitz (fresh SD-Card image and clean HDD).
 - During the new SetUp, when you get to the point of creating the LND wallet (see image below).
@@ -461,7 +387,7 @@ Fixing this depends on where you get this error:
 * If you get it in a mobile wallet, then redo the connection with the RaspiBlitz to get fresh macaroons.
 * If you get this from RTL or from the scripts of the SSH menus of the RaspiBlitz, then go to "EXPORT Macacroons and TLS.cert" in SSH main menu and choose the the "RESET Macaroons & TLS" option.
 
-Also make sure to check again on your power supply - it needs to deliver equal or more then 3A and should deliver a stable current. If you think your HDD is degrading - maybe this is a good time to replace it. See for details the FAQ question: [How can I recover my coins from a failing RaspiBlitz?](FAQ.md#how-can-i-recover-my-coins-from-a-failing-raspiblitz)
+Also make sure to check again on your power supply - it needs to deliver equal or more then 3A and should deliver a stable current. If you think your HDD is degrading - maybe this is a good time to replace it. See for details the FAQ question: [How can I recover my coins from a failing RaspiBlitz?](faq#how-can-i-recover-my-coins-from-a-failing-raspiblitz)
 
 ### Why is my node not routing?
 
@@ -596,15 +522,15 @@ You can put the heatsink-case (top-part mentioned in the shopping lists) into a 
 
 https://www.cryptocloaks.com/product/lightningshell/ (Delivery from USA)
 
-![LightningShell](pictures/lightningshell.jpeg)
+![LightningShell](../../static/img/lightningshell.jpeg)
 
-![LightningShell](pictures/lightningshell2.jpeg)
+![LightningShell](../../static/img/lightningshell2.jpeg)
 
 Also there is the ZKDS metal case available that also needs some extra hardware (SATA-USB expansion board and USB bridge).
 
 https://diynodes.com (delivery from UK)
 
-![ZKDSMetalCase](pictures/metalcase.png)
+![ZKDSMetalCase](../../static/img/metalcase.png)
 
 
 ### Are those "Under-Voltage detected" warnings a problem?
@@ -634,7 +560,7 @@ Use `REPAIR` in the SSH main menu and then choose `RESET-CHAIN`. Then you get of
 
 2. Backup LND Data, make fresh Blitz, Replay LND Data
 
-You can backup your channel and wallet data, make a complete fresh RaspiBlitz and after that is setup, you replace the LND data with your old data. Also make sure to check again on your power supply - it needs to deliver equal or more then 3A, and should deliver a stable current. If you think your HDD or SD card is degrading - maybe this is a good time to replace it. See for details the FAQ question: [How can I recover my coins from a failing RaspiBlitz?](FAQ.md#how-can-i-recover-my-coins-from-a-failing-raspiblitz)*
+You can backup your channel and wallet data, make a complete fresh RaspiBlitz and after that is setup, you replace the LND data with your old data. Also make sure to check again on your power supply - it needs to deliver equal or more then 3A, and should deliver a stable current. If you think your HDD or SD card is degrading - maybe this is a good time to replace it. See for details the FAQ question: [How can I recover my coins from a failing RaspiBlitz?](faq#how-can-i-recover-my-coins-from-a-failing-raspiblitz)*
 
 ### I have two RaspiBlitz in my network - can they both be public?
 
@@ -668,7 +594,7 @@ If you have other UPS models or ways to connect ... feel free to extend this scr
 
 Yes - take a look at the project of [Chimezie Chuta](https://twitter.com/mezie16/status/1264513274080636928?s=20)
 
-![RaspiSolar](pictures/raspisolar.jpg)
+![RaspiSolar](../../static/img/raspisolar.jpg)
 
 More details in his book ["A-Z of Building your own Full Bitcoin Lightning Node: A hand Book for Enthusiasts"](https://blockspace.shop/products/a-z-of-building-your-own-full-bitcoin-lightning-node-a-hand-book-for-enthusiasts)
 
@@ -741,7 +667,7 @@ For more background on the LND mnemonic seed [read this article](https://github.
 ### How do I set up VNC?
 
 Enter the Console/Terminal by selecting the last option from the Raspiblitz menu.
-![Raspiblitz menu](pictures/vnc-go-to-console.png)
+![Raspiblitz menu](../../static/img/vnc-go-to-console.png)
 
 Enable the VNC server using raspi-config:
 
@@ -749,14 +675,14 @@ Enable the VNC server using raspi-config:
 
 In the menu, go to
 *Interfacing Options > VNC > Enable*
-![Raspi-config menu](pictures/vnc-raspi-config-menu.png)
+![Raspi-config menu](../../static/img/vnc-raspi-config-menu.png)
 
 After that reboot the Raspiblitz. You can do this easily from the Raspiblitz menu.
 In the command line, type:
 `menu`
 The Raspiblitz menu has a reboot option if you scroll down. Select it and reboot.
 
-![Raspi-config menu](pictures/vnc-reboot-from-menu.png)
+![Raspi-config menu](../../static/img/vnc-reboot-from-menu.png)
 
 
 After the Raspiblitz is rebooted, set a password for the VNC Server:
@@ -776,7 +702,7 @@ Start the VNC server from the Raspiblitz:
 This will run by default in the display number '1'. If you want to specify another number, run this (change  *\<display-number\>* to whatever you prefer):
 `vncserver :<display-number>`
 
-![VNC server started](pictures/vnc-server-started.png)
+![VNC server started](../../static/img/vnc-server-started.png)
 
 From the VNC client (e.g. your PC, laptop), connect to the IP that the previous command has displayed in the screen (I covered it in pink in the screenshot). If everything is alright, you can see the display from the VNC client now.
 
